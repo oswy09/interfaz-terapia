@@ -1,0 +1,27 @@
+[build]
+  command = "vite build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/consultation"
+  to = "/.netlify/functions/consultation"
+  status = 200
+
+[[redirects]]
+  from = "/api/sessions/:id"
+  to = "/.netlify/functions/sessions?id=:id"
+  status = 200
+
+[[redirects]]
+  from = "/api/sessions"
+  to = "/.netlify/functions/sessions"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

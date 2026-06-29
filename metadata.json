@@ -1,0 +1,6 @@
+{
+  "name": "Terapeuta de Parejas AI",
+  "description": "Asesoría emocional y de pareja en base a los métodos Gottman, Sistémica Familiar, TCC y EFT con más de 20 años de experiencia clínica.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
