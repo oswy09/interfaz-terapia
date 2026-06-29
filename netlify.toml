@@ -13,7 +13,7 @@
 
 [[redirects]]
   from = "/api/sessions/*"
-  to = "/.netlify/functions/sessions?id=:splat"
+  to = "/.netlify/functions/sessions/:splat"
   status = 200
   force = true
 

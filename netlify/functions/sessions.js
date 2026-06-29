@@ -31,10 +31,18 @@ function sessionRowToClient(row) {
   };
 }
 
+function extractIdFromPath(event) {
+  // Fallback for when the redirect rule doesn't substitute the query param correctly:
+  // pull the id straight from the original request path, e.g. /api/sessions/<id>
+  const rawPath = (event.headers && (event.headers["x-nf-original-pathname"] || event.headers["x-nf-request-path"])) || event.path || "";
+  const match = rawPath.match(/\/api\/sessions\/([^/?]+)/) || rawPath.match(/\/sessions\/([^/?]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 exports.handler = async (event) => {
   try {
     const supabase = getSupabaseClient();
-    const id = event.queryStringParameters && event.queryStringParameters.id;
+    const id = (event.queryStringParameters && event.queryStringParameters.id) || extractIdFromPath(event);
 
     if (event.httpMethod === "GET") {
       const { data, error } = await supabase
